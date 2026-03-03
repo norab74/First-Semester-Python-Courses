@@ -1,0 +1,1 @@
+Next week we will be adding additional tables to our SQLite3 database, then we will be working with it.

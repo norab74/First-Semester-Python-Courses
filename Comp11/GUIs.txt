@@ -1,0 +1,10 @@
+GUIs:
+
+    Python has Tkinter built in
+        Because Professor Muhumure is a windows user, I am cursed to use this trash.
+    PyQT is better, especially in my work environment
+
+when using tKinter, it is important to define windows OUTSIDE of the functions which will create them
+    If you instantiate a window inside a function, it will only be accessable within that function.
+    While this is good for memory efficiency, it is a higher load on the processor and may result in 
+    situations where the interpreter cannot find the window that it is actively working in. Be careful with this one, here be dragons.

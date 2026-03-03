@@ -1,121 +1,105 @@
-#BellP12
+#BellP12 Supplemental
 #Programmer: Nora Bell
 #Email: nbell8@cnm.edu
-#Purpose: To integrate SQLite3 into an already existing application, enabling data persistence accross sessions without cookies.
-
-#Special Notes: This code has been refactored by Co-Pilot to improve readability and add docstrings, all included logic is original.
-
+#Purpose: To generate a database file in spec with the geopoint project
 
 '''
 db_Initializer.py
 =================
-Simple database initialization script for the Student Registration System
+Simple Database initialization script for the Geopoint distance calculator
 
 This script:
--Creates a SQLite database and populates it with data from a supplied CSV file
-matching the name 'schedule.csv'
-
-Tables Created:
-    -Students: Stores Student ID's and Names
-    -AvailableCourses: Stores courses currently available
-    -RegisteredCourses: Stores courses currently registered to students
+    -Creates a SQLite database and populates it with data from a supplied CSV
+    file matching the name 'Points.csv'
     
-Manual Intervention Possibly Needed:
-    -Towards the bottom of this file, under "if __name__ == "__main__":"
-        there is a line which begins with 'populate_available_courses':
-        You may need to update this line such that 'schedule.csv'
-        is replaced with the absolute path of your copy of 'schedule.csv'
+Tables Created:
+    -Points: Stores location data (latitude, longitude, point descriptor)
+
+Possible Manual Intervention Needed:
+    -Towards the bottom of this script, under `if __name__ == "__main__":`
+        There is a line beginning with `populate_points`:
+        You may need to update this line such that `Points.csv` is replaced
+        with the absolute path of your copy of `Points.csv`
 '''
-
-
 
 import sqlite3
 import csv
 
 def get_connection():
     '''
-    Establish and return a multithread enabled connection to the SQLite database
+    Establish and return a connection to the SQLite database, create it if
+    it does not exist
     '''
-    return sqlite3.connect('university.db', check_same_thread=False)
+    return sqlite3.connect('Points.db')
 
 def create_tables(cursor):
     '''
-    Create required tables in the database if they do not exist already
+    Create required tables in the database if they do not already exist
     
     Args:
-        - cursor (sqlite3.Cursor): Cursor object to execute SQL commands.
-
+        -cursor (sqlite3.Cursor): The cursor with which we will execute our
+            queries
     Tables Created:
-        - Students(student_id TEXT PRIMARY KEY, name TEXT)
-        - AvailableCourses(course_id TEXT PRIMARY KEY, course_name TEXT, crn TEXT, instructor TEXT)
-        - RegisteredCourses(student_id TEXT, course_id TEXT) with UNIQUE constraint
-
+        -Points
+            (
+                point_number TEXT,
+                point_descriptor TEXT,
+                point_latitude TEXT,
+                point_longitude TEXT
+                )
     '''
-    # Students table
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Students (
-        student_id TEXT PRIMARY KEY,
-        name TEXT
-    )
+                   CREATE TABLE IF NOT EXISTS Points(
+                    point_number TEXT,
+                    point_descriptor TEXT,
+                    point_latitude TEXT,
+                    point_longitude TEXT   
+                   )
     """)
-
-    # AvailableCourses table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS AvailableCourses (
-        course_id TEXT PRIMARY KEY,
-        course_name TEXT,
-        crn TEXT,
-        instructor TEXT
-    )
-    """)
-
-    # RegisteredCourses table with UNIQUE constraint
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS RegisteredCourses (
-        student_id TEXT,
-        course_id TEXT,
-        FOREIGN KEY(student_id) REFERENCES Students(student_id),
-        FOREIGN KEY(course_id) REFERENCES AvailableCourses(course_id),
-        UNIQUE(student_id, course_id)  -- Prevent duplicate registrations
-    )
-    """)
-
-def populate_available_courses(cursor, csv_file):
+    
+def populate_points(cursor, csv_file):
     '''
-
-    Populate the AvailableCourses table using data from a CSV file.
-
+    Populate the `Points` table using data from a CSV file.
+    
     Args:
-        cursor (sqlite3.Cursor): Cursor object to execute SQL commands.
+        cursor (sqlite3.Cursor): The cursor with which we will execute our
+            queries
         csv_file (str): Path to the CSV file containing course data.
-
+        
     CSV Format:
-        - course_id
-        - course_name
-        - crn
-        - instructor
-
+        Description,Latitude,Longitude
+        
     Notes:
-        - Uses INSERT OR IGNORE to avoid duplicate entries.
-        - Prints an error message if the CSV file is not found.
+        -Uses INSERT OR IGNORE queries to avoid duplication
+        -Prints an error if the CSV is not found.
     '''
     try:
+        n=0
         with open(csv_file, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                n += 1
                 cursor.execute("""
-                INSERT OR IGNORE INTO AvailableCourses (course_id, course_name, crn, instructor)
+                INSERT OR IGNORE INTO Points (
+                    point_number,
+                    point_descriptor,
+                    point_latitude,
+                    point_longitude)
                 VALUES (?, ?, ?, ?)
-                """, (row['course_id'], row['course_name'], row['crn'], row['instructor']))
+                """,
+                (n,
+                 row['Description'],
+                 row['Latitude'],
+                 row['Longitude']
+                 )
+                )
     except FileNotFoundError:
-        print(f"CSV file '{csv_file}' not found.")
-
+        print(f"CSV file `{csv_file}` not found.")
+        
 if __name__ == "__main__":
     conn = get_connection()
     cursor = conn.cursor()
     create_tables(cursor)
-    #absPath = input("Paste the absolute path of schedule.csv")
-    # Update path to your CSV file if needed
-    populate_available_courses(cursor, 'schedule.csv')
+    populate_points(cursor, 'ExpandedPoints.csv')
     conn.commit()
     conn.close()
