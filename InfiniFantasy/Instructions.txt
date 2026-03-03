@@ -1,0 +1,23 @@
+Requirements:
+    python 3.13.5 or greater
+    pygame (obtainable via pip or your preferred package manager)
+    Speakers or Headphones
+    Literally any video card (integrated is fine)
+    Some RAM
+
+How to Play:
+    Shoot Arrow - Z
+    Jump - X
+    Run - Left Arrow / Right Arrow
+
+On a Dark and Stormy night while watching "Lord of the Rings", 
+    the cacocophonous boom of a thunderclap explodes above - startling
+    you into a dizzy spell! You fall upon the floor striking it with your
+    skull, the searing impact dampened as the already dark room fades to 
+    black.
+
+    You awake in a forest, storming much like the one outside your home.
+    Dressed in leather armor and equipped with a Ranger's Bow, how many 
+    Orcs can you fight through on your quest to make it home?!
+
+

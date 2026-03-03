@@ -1,0 +1,6 @@
+#Turtle : 
+ #   Tutle graphics are a super simple library for drawing to the screen in a window
+#
+ #   to use:
+  #      from turtle import *
+        

@@ -1,0 +1,73 @@
+FLASK
+
+
+Installing flask
+	Pip install with --break-system-packages 
+	or
+	Apt install python3-flask
+
+Building a basic Flask Application
+
+	Create a new folder for your project
+	Create a file called app.py
+	Add the following Boilerplate:
+#		from flask import Flask
+#		app = Flask(__name__)
+#		
+#		@app.route('/')
+#		def home():
+#			return 'Hello, Flask!'
+#		if __name__ == '__main__':
+#			app.run(debug = True)
+
+
+Understanding @app.route
+@app.route is a decorator which maps a URL to a python function.
+It tells flask (and only flask) which URL should trigger a specified function.
+
+EX:
+#	@app.route('about')
+#	def about():
+#		some code here
+
+
+project structure:
+
+flaskApp/
+|
+|---app.py
+|---templates/
+|------index.html
+|---static/		#Any static files go here
+|------css/
+|---------styles.css
+|------js/
+|---------script.js
+|------images/
+|---requirements.txt	#Optional Deps
+
+
+Flask uses the Jinja2 templating style for dyn amic HTML
+
+#from flask import render_template
+#@app.route('/')
+#def home()
+#	return render_template('index.html')
+
+Flask will automatically go find the required file from the 'templates/' directory
+
+Adding CSS and JavaScript
+
+	Static Files like CSS, JS and Images go inside the 'static/' folder
+	Link them in HTML using 
+		url_for:<link rel'=stylesheet' href='{{url_for('static',filename='css/styles.css')}}'>
+		<script src = '{{url_for...
+
+The WSGI middleware will basically tell you what is missing, this stuff seems to be super simple to integrate,
+ just pay attention to your debug console.
+
+Flask is built on top of Werkzeug and Jinja2
+	Werkzeug is a comprehensive Web Server Gateway Interface.
+		WSGI (pronounced Whiskey) is a simple calling convention for web servers to forward requests
+	Jinja2 is a template engine which handles the rendering of dynamic HTML in your application
+		It makes it easy to build Dynamic web pages, with lots of variables or loops

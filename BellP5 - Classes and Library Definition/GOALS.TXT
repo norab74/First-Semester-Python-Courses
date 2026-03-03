@@ -1,0 +1,5 @@
+For this project we need to:
+ define two libraries (external classes)
+ generate a CSV to hold our class data
+ Import the data from the CSV into a dictionary
+ Complete TODO lists in the defined libraries and main functions.

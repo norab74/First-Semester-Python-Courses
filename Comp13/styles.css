@@ -1,0 +1,70 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Headings */
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Center content */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Forms */
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Messages */
+p {
+    font-size: 14px;
+}
+
+p[style*="color:red"] {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Links */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
