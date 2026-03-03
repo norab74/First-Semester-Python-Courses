@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  {# Stylesheet#} {#Syntax reference from `view-source:https://mycourses.cnm.edu/d2l/home#`#}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# Optional favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/>
+  {% include 'includes/navbar.html' %}
+</head>
+
+<body>
+<section class=frame>
+    <h1>Nora Bell Development</h1>
+    <h2>Hiya, I'm Nora!</h2>
+    <hl><p>Welcome to my site,
+        <p>Take a look around,
+        <p>make an account and leave a comment,
+        <p>or make a DND character.
+</section>
+</body>

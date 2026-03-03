@@ -1,0 +1,18 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Character Created</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <div style="max-width:900px;margin:24px auto;padding:16px;">
+    {% include 'includes/navbar.html' %}
+    <div style="max-width:900px;margin:24px auto;padding:16px;">
+      <h2>Character Created</h2>
+      <p>Character <strong>{{ character.char_name }}</strong> was saved.</p>
+      <p><a href="/">Return Home</a></p>
+    </div>
+</body>
+</html>

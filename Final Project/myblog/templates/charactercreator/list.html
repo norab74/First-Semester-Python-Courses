@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>5e Characters</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/character-list.css' %}">
+  <link rel="icon" href={% static '/favicon.ico' %}>
+</head>
+<body>
+  {% include 'includes/navbar.html' %}
+  <div class="frame">
+    <h1>5e Compatible Character Generator</h1>
+  </div>
+  <div class="frame">
+    <h2>Saved Characters</h2>
+    {% if characters %}
+      <table class="char-list">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Class / Race</th>
+            <th>Level</th>
+            <th>Owner</th>
+            <th>Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in characters %}
+            <tr>
+              <td>{{ c.char_name|default:'Unnamed' }}</td>
+              <td>{{ c.char_age}}</td>
+              <td>{{ c.char_class }} / {{ c.char_Race }}</td>
+              <td>{{ c.char_level }}</td>
+              <td>{% if c.owner %}{{ c.owner.username }}{% else %}Public{% endif %}</td>
+              <td>{{ c.last_updated|date:"Y-m-d H:i" }}</td>
+              <td>
+                <a class='button' href="{% url 'charactercreator:load' c.pk %}">Load</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No characters found.</p>
+    {% endif %}
+
+    <p><a class="button" href="{% url 'charactercreator:start' %}">Create New Character</a></p>
+  </div>
+</body>
+</html>

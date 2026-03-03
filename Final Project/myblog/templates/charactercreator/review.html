@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Review Character</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/character-sheet.css' %}">
+</head>
+<body>
+  {% include 'includes/navbar.html' %}
+
+  <div class="frame character-sheet">
+    <h2 class="sheet-title">Character Review</h2>
+    {% if data.is_edit %}
+      <div class="editing-badge">Editing saved character (changes will overwrite the existing one)</div>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+
+      <section class="sheet-header">
+        <div class="name">{{ data.char_name|default:'Unnamed' }}</div>
+        <div class="meta">
+          <div>{{ data.char_Race|default:'' }} {{ data.char_class|default:'' }} (Lv {{ data.char_level|default:'1' }})</div>
+          <div class="align">{{ data.char_Alignment|default:'' }}</div>
+        </div>
+      </section>
+
+      <section class="sheet-grid">
+        <aside class="left-col">
+          <div class="abilities card">
+            <h3>Abilities</h3>
+            <dl>
+              <dt>STR</dt><dd>{{ data.char_Strength|default:'10' }} <span class="mod">({{ data.char_Strength_mod|default:'+0' }})</span></dd>
+              <dt>DEX</dt><dd>{{ data.char_Dexterity|default:'10' }} <span class="mod">({{ data.char_Dexterity_mod|default:'+0' }})</span></dd>
+              <dt>CON</dt><dd>{{ data.char_Constitution|default:'10' }} <span class="mod">({{ data.char_Constitution_mod|default:'+0' }})</span></dd>
+              <dt>INT</dt><dd>{{ data.char_Intelligence|default:'10' }} <span class="mod">({{ data.char_Intelligence_mod|default:'+0' }})</span></dd>
+              <dt>WIS</dt><dd>{{ data.char_Wisdom|default:'10' }} <span class="mod">({{ data.char_Wisdom_mod|default:'+0' }})</span></dd>
+              <dt>CHA</dt><dd>{{ data.char_Charisma|default:'10' }} <span class="mod">({{ data.char_Charisma_mod|default:'+0' }})</span></dd>
+            </dl>
+          </div>
+
+          <div class="skills card">
+            <h3>Skills</h3>
+            {% if data.char_Skills %}
+              <ul>
+                {% for k,v in data.char_Skills.items %}
+                  <li><strong>{{ k }}</strong>: {{ v }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="muted">No skills specified.</p>
+            {% endif %}
+            <!-- blank area for handwriting when printed -->
+            <div class="handwrite-area" aria-hidden="true"></div>
+          </div>
+        </aside>
+
+        <main class="right-col">
+          <div class="combat card">
+            <h3>Combat</h3>
+            <div class="combat-grid">
+              <div><strong>HP</strong><div class="big">{{ data.char_Current_HP|default:'0' }} / {{ data.char_Max_HP|default:'0' }}</div></div>
+              <div><strong>Hit Die</strong><div class="big">d{{ data.char_Hit_Die|default:'8' }}</div></div>
+              <div><strong>AC</strong><div class="big">{{ data.char_Armor_Class|default:'10' }}</div></div>
+              <div><strong>Speed</strong><div class="big">{{ data.char_Speed|default:'30' }} ft</div></div>
+              <div><strong>Initiative</strong><div class="big">{{ data.char_Initiative_Bonus|default:'0' }}</div></div>
+            </div>
+          </div>
+
+          <div class="equipment card">
+            <h3>Equipment & Spells</h3>
+            {% if data.char_Equipment %}
+              <p>{{ data.char_Equipment }}</p>
+            {% endif %}
+            {% if data.char_Spells %}
+              <p><strong>Spells:</strong> {{ data.char_Spells }}</p>
+            {% endif %}
+            <!-- large blank area for printed sheet handwriting -->
+            <div class="handwrite-area large" aria-hidden="true"></div>
+          </div>
+
+          <div class="notes card">
+            <h3>Features & Notes</h3>
+            {% if data.char_Features %}
+              <p>{{ data.char_Features }}</p>
+            {% endif %}
+            {% if data.char_Notes %}
+              <p>{{ data.char_Notes }}</p>
+            {% endif %}
+            <!-- blank area for writing/notes -->
+            <div class="handwrite-area" aria-hidden="true"></div>
+          </div>
+        </main>
+      </section>
+
+      <p class="confirm"></p>
+      <div class="controls">
+        <a class="button edit" href="{% url 'charactercreator:step1' %}">Edit</a>
+        {% if user.is_authenticated %}
+          <label class="save-private"><input type="checkbox" name="save_private" value="1"> Save privately (only you can see this)</label>
+        {% endif %}
+        <button type="submit">{% if data.is_edit %}Save Changes{% else %}Confirm & Save{% endif %}</button>
+        <a class="cancel" href="/character/">Cancel</a>
+        <button type="button" id="printBtn">Print / Save PDF</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Print button triggers the browser print dialog (user can choose Save as PDF)
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('printBtn');
+      if (btn) btn.addEventListener('click', () => window.print());
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Signed out</title>
+  {# CSS Stylesheet #}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/> 
+</head>
+  {% include 'includes/navbar.html' %}
+<body>
+  <h1>You have been logged out.</h1>
+</body>
+</html>

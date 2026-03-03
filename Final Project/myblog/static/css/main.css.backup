@@ -1,0 +1,71 @@
+/*I don't know CSS so I used copilot for this part then hacked it to bits to make it mine*/
+/* static/css/main.css */
+/* Minimal Gruvbox-inspired palette */
+:root {         /*Color scheme derived from https://penguin9000.github.io/Acerolas-Epic-Color-Palettes/*/
+  --gb-bg: #543771;
+  --gb-fg: #74428a;
+  --gb-accent: #954ea2;  
+  --gb-muted: #ba5aaf; /*Because pink is cute, obviously*/
+}
+
+body {
+  background: var(--gb-bg);
+  color: var(--gb-fg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+h3, h4, h5 {
+  color: var(--gb-accent);
+  margin: 0.25rem 0 0.5rem;
+}
+
+a { color: var(--gb-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+form textarea, form input[type="text"] {
+  width: 100%;
+  max-width: 48rem;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 1px solid var(--gb-muted);
+  border-radius: 4px;
+  background: #3c3836;
+  color: var(--gb-fg);
+}
+
+button {
+  background: var(--gb-accent);
+  color: var(--gb-bg);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+
+
+/* Apply to all text inputs and textareas */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  background-color: #964a8d; /* Your desired color */
+  color: #543771;           /* Text color for contrast */
+  border: 1px solid #74428a;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+/* Optional: Change color when focused */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  background-color: #ba5aaf; /* Slightly lighter on focus */
+  outline: none;
+  border-color: #74428a;     /* Accent color */
+}
+

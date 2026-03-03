@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  {# Stylesheet#} {#Syntax reference from `view-source:https://mycourses.cnm.edu/d2l/home#`#}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# Optional favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/>
+  {% include 'includes/navbar.html' %}
+</head>
+<body>
+<section class=frame>
+    <section class=frame>
+        <h1>About Me</h1>
+    </section>
+    <section class=frame>
+        <h2>Hey, I'm Nora! <img src={% static '/noraAvatar.png' %}></h2>
+        <hl>
+            <p>I'm a software development student with 20 years experience self administering Linux systems. I've been doing server admin with my homelab for a couple years, mostly just Jellyfin and playing around with selfhosted web-accessable LLMs. </p>
+            <br>
+            <p>When you've been sitting adjacent to the Open Source space for as long as I have -- using the software, spreading the gospel -- but never actually contributing anything beyond offering new users support in comment sections or submitting bug reports, eventually you start to feel bad for not contributing. Partnered with a desire to get out of sales so intense it'd drive a mushroom to evolve legs just to get away, I needed to make a change. New Mexico has a wonderful program called the Opportunity Scholarship. The change is too easy not to jump on at that point, free college? I mean c'mon, of course I'm gonna do it.</p>
+            <br>
+            <p>So it's the end of the first semester. I've got A's in all my classes. This website (different parts of it for each) is actually acting as my final projects for my programming classes. The Blog portion is for my Programming Fundamentals class, and the DnD 5e Character Generator is for my Computer Programming Fundamentals: Python class. It's pretty wild to me that after only two classes I'm hand-writing entire websites. Two weeks ago I didn't know HTML at all, now I'm freehanding it to write this page.</p>
+            <p>This site is hand written in Python, HTML, and CSS with django as an intermediate to tie everything together and handle database management, static page rendering, and HTTP transport. Throughout the writing of this project, I referenced djangoproject.com, geeksforgeeks.com, w3schools.com, and MS365 Copilot.<p>
+            </hl>
+    </section>
+</section>
+</body>

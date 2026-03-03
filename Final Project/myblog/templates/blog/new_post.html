@@ -1,0 +1,60 @@
+{%load static%}
+
+<!doctype html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8">
+  <title>Nora Bell: Blog</title>
+  {# Stylesheet#} {#Syntax reference from `view-source:https://mycourses.cnm.edu/d2l/home#`#}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# Optional favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/>
+
+  {% include 'includes/navbar.html' %}
+<body>
+
+
+<script>
+    {% static 
+  <!-- TinyMCE (Cloud CDN) -->
+  https://cdn.tiny.cloud/1/no-api-key/tinymce/8/tinymce.min.js</script>
+  <script>
+    tinymce.init({
+      selector: '#post_contents',      // replace your form textarea
+      height: 500,
+      menubar: true,
+      plugins: 'advlist link image lists',
+      toolbar: 'undo redo | blocks | bold italic | bullist numlist | link image',
+      branding: false
+    });
+  </script>
+
+
+</head>
+
+    </div>
+  </header>
+
+  <main>
+    <h2>Create a New Post</h2>
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        <label for="{{ form.post_title.id_for_label }}">Title</label>
+        {{ form.post_title.errors }}
+        {{ form.post_title }}
+      </div>
+
+      <div style="margin-top:0.75rem;">
+        <label for="{{ form.post_contents.id_for_label }}">Body</label>
+        {{ form.post_contents.errors }}
+        {{ form.post_contents }}
+      </div>
+
+      <button type="submit" style="margin-top:1rem;">Publish</button>
+    </form>
+  </main>
+</body>
+</html>

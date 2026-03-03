@@ -1,0 +1,72 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sign up</title>
+  {# CSS Stylesheet #}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/> 
+</head>
+<body>
+  <section class="frame">
+    <h1>Create an account</h1>
+  </section>
+  <section class="frame">
+  <form method="POST">
+    {% csrf_token %}
+    {% if messages %}
+        <div class="alert alert-primary" role="alert">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {# show non-field errors from the form if available #}
+      {% if form and form.non_field_errors %}
+        <div class="error">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="id_username">Username</label>
+        {% if form and form.username.errors %}
+          <div class="error">{{ form.username.errors }}</div>
+        {% endif %}
+        <input type="text" name="username" id="id_username" class="form-control"
+               placeholder="Enter username" required
+               value="{{ form.username.value|default:'' }}" />
+      </div>
+
+      <div class="form-group">
+        <label for="id_password1">Password</label>
+        {% if form and form.password1.errors %}
+          <div class="error">{{ form.password1.errors }}</div>
+        {% endif %}
+        <input type="password" name="password1" id="id_password1" class="form-control"
+               placeholder="Password" required />
+      </div>
+
+      <div class="form-group">
+        <label for="id_password2">Confirm Password</label>
+        {% if form and form.password2.errors %}
+          <div class="error">{{ form.password2.errors }}</div>
+        {% endif %}
+        <input type="password" name="password2" id="id_password2" class="form-control"
+               placeholder="Confirm Password" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+  </section>
+  <section class="frame">
+    <p>Already have an account?
+      <a href="/login/"><button type="button">Login</button></a>
+    </p>
+  </section>
+  </div>
+</body>
+
+</html>

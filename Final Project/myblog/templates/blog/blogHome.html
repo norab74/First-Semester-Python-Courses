@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nora Bell: Blog</title>
+  {# Stylesheet#} {#Syntax reference from `view-source:https://mycourses.cnm.edu/d2l/home#`#}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# Optional favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/>
+  {% include 'includes/navbar.html' %}
+
+</header>
+
+</head>
+
+
+
+
+<section class="frame">
+<h1>Welcome to my blog</h1>
+<h3>Stay tuned for my adventures in code</h3>
+</section>
+<section class="frame">
+{% if newest_posts %}
+    <ul>
+        {% for post in newest_posts %}
+            <li><a href="/blog/{{ post.pk }}">{{ post.post_title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Blog Posts are Availible.</p>
+{% endif %}
+</section>
+<br><br><br>
+Copyright is for losers, Nora Bell, 2025

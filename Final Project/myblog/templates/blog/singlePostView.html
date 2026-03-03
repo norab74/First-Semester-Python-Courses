@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nora Bell: Blog</title>
+  {# Stylesheet#} {#Syntax reference from `view-source:https://mycourses.cnm.edu/d2l/home#`#}
+  <link rel="stylesheet" type"text/css" href={% static '/css/main.css' %}/>
+  {# Optional favicon #}
+  <link rel="icon" href={% static '/favicon.ico' %}/>
+
+  {% include 'includes/navbar.html' %}
+</header>
+
+</head>
+
+<section class="frame">
+  <h3>{{ post_title }}</h3>
+  <p><small>{{ pub_date }}</small></p>
+  <p>{{ post_contents|safe }}</p>
+
+  <h3>Join the conversation!</h3>
+  {% if not request.user.is_authenticated %}
+    <section class="frame">
+      <h4>You're not logged in</h4>
+      <h5>Log in or Register to participate</h5>
+    </section>
+    {% endif %}
+  {% if request.user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    {{ commentBox.non_field_errors }}
+
+    <div>
+      <label for="{{ commentBox.name.id_for_label }}">Name</label>
+      {{ commentBox.name.errors }}
+      {{ commentBox.name }}
+    </div>
+
+    <div style="margin-top:0.5rem;">
+      <label for="{{ commentBox.comment_contents.id_for_label }}">Comment</label>
+      {{ commentBox.comment_contents.errors }}
+      {{ commentBox.comment_contents }}
+    </div>
+
+    <button type="submit" style="margin-top:0.75rem;">Submit</button>
+  </form>
+  {% endif %}
+  <hr>
+  {% if comments %}
+    <h5>Comments</h5>
+    <ul>
+      {% for c in comments %}
+        <li>
+          <strong>{{ c.name }}</strong> <small>— {{ c.pub_date }}</small><br>
+          {{ c.comment_contents }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No comments yet. Be the first!</p>
+  {% endif %}
+  </section>
+  <a href='/blog/'>
+    Back to Blog Homepage
+    </a>
+
+</body>
+
+</html>
+<br><br><br>
+Copyright is for losers, Nora Bell, 2025
+

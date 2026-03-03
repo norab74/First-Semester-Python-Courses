@@ -1,0 +1,41 @@
+{% load static %}
+<section class="frame">
+  <nav class="nav-left">
+    <table>
+        <tr>
+            <th>
+                <a href='/'><button>Home</button></a>
+            </th>
+            <th>
+                <a href='/blog/'><button>Blog</button></a>
+            </th>
+            <th>
+                <a href='/aboutMe/'><button>About Me</button></a>
+            </th>
+            <th>
+                <a href='/character/'><button>Create Character</button></a>
+            </th>
+        {% if request.user.is_authenticated %}
+            <th>
+                <span class="hello-user">Hello, {{ request.user.username }}</span>
+            </th>
+            <th>
+                <a href='/logout/'><button>Log out</button></a>
+            </th>
+            {% if request.user.is_superuser %}
+              <th>
+                  <a href='/newPost/'><button>Create Post</button></a>
+              </th>
+            {% endif %}
+        {% else %}
+            <th>
+                <a href='/login/'><button>Login</button></a>
+            </th>
+            <th>
+                <a href='/register/'><button>Register</button></a>
+            </th>
+        {% endif %}
+        </tr>
+    </table>
+  </nav>
+</section>

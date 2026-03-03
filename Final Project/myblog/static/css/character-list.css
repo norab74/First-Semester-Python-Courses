@@ -1,0 +1,51 @@
+.char-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 0.95rem;
+}
+
+.char-list th,
+.char-list td {
+  border: 1px solid #ba5aaf; 
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.char-list thead th {
+  background: #954ea2;
+  color: #f4e9f9;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.char-list tbody tr:nth-child(even) {
+  background: #954ea200;
+}
+
+.char-list tbody tr:hover {
+  background: #ba5aaf00;
+}
+
+.char-list td a {
+  margin-right: 0.5rem;
+  color: #954ea2;
+  text-decoration: none;
+}
+
+.char-list td a:hover {
+  text-decoration: underline;
+}
+
+/* small screens: make table horizontally scrollable */
+@media (max-width: 720px) {
+  .char-list {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}

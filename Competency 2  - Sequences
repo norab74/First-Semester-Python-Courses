@@ -1,0 +1,318 @@
+SCRUM:
+    What have you been working on:
+        I've been working on the projects assigned by my professors, currently I do not have any roadblocks but must - 
+         - commit to memory that error handling re:libraries must be handled on a cross-environment basis.
+    What will you be working on next:
+
+
+
+Variables can contain more than one data item:
+    Lists
+    Tuples
+    Sets
+    Dictionaries
+    Strings
+    Ranges
+    Booleans
+    Bytes
+    Byte Arrays
+
+Sequences are ordered collections of items:
+        A Sequence is the most basic data structure in Pyrhon, each element is assigned a unique index value that can be used to access it.
+        Indexes start at 0.                         #
+    Lists
+    Tuples
+    Strings
+    Ranges
+    Bytes
+
+
+
+Lets play with a variable: ---This variable is a list---
+    Numbers=[   1,   2, 3,  4,  5,  6,  7,  8]
+    Indexes=[   0,   1, 2,  3,  4,  5,  6,  7]   #Just by happenstance, this line is also a list
+        Notice: Indexes are equal to the number of items minus one.
+
+    print(Numbers[4])
+        Output: 5
+        Explanation: The index value of 4 is equal to the 5th item in the list.
+
+Lists are mutable:
+    Mutable means that the contents of the list can be changed after it has been created.
+    Lists are defined by square brackets [] and items are separated by commas.
+    Example:
+        Fruits = ["Apple", "Banana", "Cherry"]
+        print(Fruits)
+            Output: ['Apple', 'Banana', 'Cherry']
+        Fruits[1] = "Orange"
+        print(Fruits)
+            Output: ['Apple', 'Orange', 'Cherry']
+        Explanation: The second item in the list (index 1) has been changed from "Banana" to "Orange".
+In contrast, tuples are immutable:
+    Immutable means that the contents of the tuple cannot be changed after it has been created.
+    Tuples are defined by parentheses () and items are separated by commas.
+    Example:
+        Fruits = ("Apple", "Banana", "Cherry")
+        print(Fruits)
+            Output: ('Apple', 'Banana', 'Cherry')
+        #Fruits[1] = "Orange"  #This will raise an error
+        Explanation: Attempting to change the second item in the tuple (index 1) will result in a TypeError.
+        print(Fruits[1])
+            Output: 'Banana'
+        Explanation: The second item in the tuple (index 1) is still "Banana
+Common Sequence Operations:
+    Indexing
+    Slicing
+    Membership Testing
+    Concatenating
+    Multiplying
+
+
+###EXAMPLE###
+    greeting = "Cats and stuff"
+    print(greeting[6])
+        Output: n
+        Explanation: The index value of 6 is equal to the 7th item in the string.
+    print(greeting[0:4])
+        Output: Cats
+        Explanation: The slice starts at index 0 and ends at index 4, so it includes the characters from index 0 to index 4.
+
+Indexing is to access individual elements in a sequence:
+    Like a well organized file cabinet, all items in a sequence have a designated position
+    This designated position is called an index.
+    Indexes start at 0.
+    Example:
+        greeting = "Hello, World!"
+        print(greeting[7])
+            Output: W
+        Explanation: The index value of 7 is equal to the 8th item in the string.
+All of the above examples are using Lists:
+    To make a tuple, which is immutable, use parentheses instead of square brackets.
+    Example:
+        numbers = (1, 2, 3, 4, 5)
+        print(numbers[2])
+            Output: 3
+        Explanation: The index value of 2 is equal to the 3rd item in the tuple.
+Slicing is to access a range of elements in a sequence:
+    Slicing is done by specifying a start index and an end index, separated by a colon.
+    The slice will include the start index but exclude the end index.
+    Example:
+        greeting = "Hello, World!"
+        print(greeting[0:4])
+            Output: Hello
+        Explanation: The slice starts at index 0 and ends at index 4, so it includes the characters from index 0 to index 4.
+    The syntax for a slice is as follows:      
+        Sequence[start:end:step]
+            start: The index to start the slice (inclusive).
+            end: The index to end the slice (exclusive).
+            step: The step size for the slice (optional, default is 1). 
+            
+        index formats:
+            [:] - This will return the entire sequence.
+            [start:] - This will return the sequence from the start index to the end.
+            [:end] - This will return the sequence from the beginning to the end index.
+            [start:end] - This will return the sequence from the start index to the end index.
+            [start:end:step] - This will return the sequence from the start index to the end index, with a step size of step.
+            [-4:] - This will return the last 4 items in the sequence.
+            [:-4] - This will return the sequence excluding the last 4 items.
+            [::-1] - This will return the sequence in reverse order.
+               
+    Example:
+        numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        print(numbers[2:8:2])
+            Output: [2, 4, 6]
+        Explanation: The slice starts at index 2 and ends at index 8, with a step size of 2, so it includes every second item from index 2 to index 8
+
+Concatenating is to combine two or more sequences:
+    Concatenation is done using the + operator.
+    Example:
+        list1 = [1, 2, 3]
+        list2 = [4, 5, 6]
+        combined = list1 + list2
+        print(combined)
+            Output: [1, 2, 3, 4, 5, 6]
+        Explanation: The two lists have been combined into a single list.
+    Example:
+        str1 = "Hello, "
+        str2 = "World!"
+        combined = str1 + str2
+        print(combined)
+            Output: Hello, World!
+        Explanation: The two strings have been combined into a single string.
+    Different types of sequences cannot be concatenated: 
+        Example:
+            list1 = [1, 2, 3]
+            str1 = "Hello"
+            combined = list1 + str1  -- This will raise a TypeError
+            Explanation: Attempting to concatenate a list and a string will result in a TypeError. 
+        Example:
+            tuple1 = (1, 2, 3)
+            list1 = [1, 2, 3]
+            combined = tuple1 + list1  -- This will raise a TypeError
+            Explanation: Attempting to concatenate a tuple and a list will result in a TypeError.
+
+Multiplying is to repeat a sequence a specified number of times:
+    Multiplication is done using the * operator.
+    Example:
+        list1 = [1, 2, 3]
+        repeated = list1 * 3
+        print(repeated)
+            Output: [1, 2, 3, 1, 2, 3, 1, 2, 3]
+        Explanation: The list has been repeated 3 times.
+    Example:
+        str1 = "Hello"
+        repeated = str1 * 3
+        print(repeated)
+            Output: HelloHelloHello
+        Explanation: The string has been repeated 3 times.            
+    Example:
+        clubBeat = ['boots', 'and', 'cats']
+        measure = clubBeat * 4
+        print(measure)
+            Output: ['boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats']
+            Explanation: The list has been repeated 4 times.
+        song = measure * 10
+        print(song)
+            Output: ['boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats', 'boots', 'and', 'cats...]
+            Explanation: The list has been repeated 10 times.
+
+
+A list needing to be populated with an empty dataset should use "None":
+    The keyword "None" is used to represent the absence of a value or a null value in Python.
+    It is often used to initialize variables or to indicate that a function does not return a value.
+    When multiplying a list by an integer, using "None" will create a list with the specified number of None values.
+
+    Example:
+        datum = None
+        data = datum * 5
+        print(data)
+            Output: [None, None, None, None, None]
+            Explanation: The list has been initialized with 5 None values.
+        print(type(datum))
+            Output: <class 'NoneType'>
+            Explanation: The type of datum is NoneType.
+        print(type(data))
+            Output: <class 'list'>
+            Explanation: The type of data is list. 
+
+The indexing method may be used to poll the index of a given list item
+    Example:
+        fruits = ['apple', 'banana', 'cherry']
+        index = fruits.index('banana')
+        print(index)
+            Output: 1
+        Explanation: The index of 'banana' in the list is 1.
+    If the item is not found in the list, a ValueError will be raised.
+    Example:
+        fruits = ['apple', 'banana', 'cherry']
+        index = fruits.index('orange')  -- This will raise a ValueError
+        Explanation: Attempting to find the index of 'orange' in the list will result in a ValueError since it is not in the list.
+    We can cross reference two lists with indexing:
+        Example:
+            fruits = ['apple', 'banana', 'cherry']
+            prices = [0.5, 0.75, 1.0]
+            fruit = 'banana'
+            index = fruits.index(fruit)
+            price = prices[index]
+            print(f"The price of {fruit} is {price}")
+                Output: The price of banana is 0.75
+            Explanation: The index of 'banana' in the fruits list is used to find the corresponding price in the prices list.
+Other methods may also be applied to sequences:
+    upper()
+    lower()
+    count()
+    sort()
+    reverse()
+    append()
+    insert()
+    remove()
+
+            object.method(args)
+            When you call a function from a library, you are using the method function() on the object library
+                ex: time.sleep(3)
+                    Using the library object "time" we will use the "sleep" method with an arg of "3" for to cause the script to 
+                    hang for 3 seconds
+            print(fruits.count('apple'))
+                #output: 1
+            fruits.append('apple'*10)
+            print(fruits.count('apple'))
+                #output: 11
+            fruits.extend('grape', 'tamarind')
+            print(fruits)
+    
+
+
+
+
+
+
+
+##How do you find the length of a list?
+    num=[1,2,3,4,5,6]
+    length=len(num)
+    print(length)
+    #output: 6
+##What about the max/min value
+    max=max(num)
+    min=min(num)
+    bounds=max,min
+    print(bounds)
+    #output: 6,1
+##And the Sum total?
+    total=sum(num)
+    print(total)
+    #output:21
+
+
+
+
+
+
+
+
+#Lists can be manipulated like any other variable
+    Don't forget to address the specific index or slice you desire to change!
+    Otherwise you could end up converting your list to a different type and overwriting It
+
+    name = list( 'perl' )
+    print(name)
+        #output: ['p', 'e', 'r', 'l']
+    name[2:]=list('ar')
+    print(name)
+        #output: ['p', 'e', 'a', 'r']
+
+
+
+other functions for sequences:
+    sum()
+    len()
+    sorted()
+    del()
+    in()
+    reversed()
+    list()
+
+
+
+in()
+    if _____ in ______
+        then True
+        else False
+ example:
+    print("corgi" in dogs)
+
+
+
+
+ Memory safety stuff::
+
+    numbers=[1,2,3,4,5]
+    numbers[1:4]=[20,30] #replaces 2, 3, and 4 with 20 and 30
+        #output: [1,20,30,5]  ## where did [2,3,4] go?
+            Removed from memory, gone, zilch, nada, unrecoverable.
+            This is what is referred to as an unreachable address.
+            Attempting to reach these addresses could potentially introduce security holes
+            Attempting to modify or access these unreachable addresses could also introduce potential memory leaks.
+
+
+
